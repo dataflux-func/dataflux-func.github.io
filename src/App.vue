@@ -1,23 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="page-wrapper">
+      <Header />
+      <router-view />
+      <div id="footer-push"></div>
     </div>
-    <router-view/>
+    <Footer />
   </div>
 </template>
 
 <script>
+import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
+
 export default {
   name: 'app',
   components: {
+    Header,
+    Footer,
   }
 }
 </script>
 
 <style>
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 #app {
+  height: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -25,16 +37,10 @@ export default {
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+#page-wrapper {
+  min-height: 100%;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+#footer-push {
+  height: 300px; /* Footer 高度 */
 }
 </style>
