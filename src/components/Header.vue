@@ -34,7 +34,6 @@ export default {
 #logo {
   position: absolute;
   left: 30px;
-  height: 100%;
 }
 
 #nav {
