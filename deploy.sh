@@ -11,4 +11,4 @@ cd -
 
 git add -A
 git commit -m 'deploy'
-git push git@github.com:dataflux-func/dataflux-func.github.io.git master
+git push -f git@github.com:dataflux-func/dataflux-func.github.io.git master
