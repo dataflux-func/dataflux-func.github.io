@@ -22,6 +22,7 @@ export default {
   position: absolute;
   top: 0;
   width: 100%;
+  min-width: 1200px;
   padding-top: 10px;
   display: flex;
   justify-content: space-between;
@@ -31,14 +32,14 @@ export default {
 
 <style>
 #logo {
-  float: left;
-  padding-left: 30px;
+  position: absolute;
+  left: 30px;
   height: 100%;
 }
 
 #nav {
-  float: right;
-  padding-right: 30px;
+  position: absolute;
+  right: 30px;
 }
 
 #nav a {

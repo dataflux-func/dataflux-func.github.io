@@ -11,7 +11,7 @@
       <div class="section-content">
         <h1>{{ floatPanelSection.title }}</h1>
         <div class="section-columns">
-          <div v-for="item in floatPanelSection.items">
+          <div v-for="item in floatPanelSection.items" class="section-column-item">
             <img :src="item.img" />
             <h1>{{ item.title }}</h1>
             <span>{{ item.desc }}</span>
@@ -21,15 +21,14 @@
     </div>
 
     <div class="section bg-column-area">
-      <img src="@/assets/img/01-bg-column-area.png" />
       <div class="section-content">
         <h1>{{ bgColumnAreaSection.title }}</h1>
         <div class="section-columns">
-          <div v-for="item in bgColumnAreaSection.items">
-            <h1>{{ item.title }}</h1>
-            <span>{{ item.desc }}</span>
+            <div v-for="item, i in bgColumnAreaSection.items" class="section-column-item">
+              <h1>{{ item.title }}</h1>
+              <span>{{ item.desc }}</span>
+            </div>
           </div>
-        </div>
       </div>
     </div>
 
@@ -37,7 +36,7 @@
       <div class="section-content">
         <h1>{{ cardAreaSection.title }}</h1>
         <div class="section-columns">
-          <div v-for="item in cardAreaSection.items">
+          <div v-for="item in cardAreaSection.items" class="section-column-item">
             <img :src="item.img" />
             <span>{{ item.desc }}</span>
           </div>
@@ -65,27 +64,28 @@ export default {
       preTitle: 'DataFlux Func',
       title   : '数据处理开发平台',
       desc: `DataFlux Func 是一款在线 ServerLess 函数开发平台。
-            简单易用、无需管理服务器等基础设施，只需编写代码并发布，平台会自动为函数生成HTTP API接口共外部调用。`
+            简单易用、无需管理服务器等基础设施，
+            只需编写代码并发布，自动为函数生成HTTP API接口共外部调用。`
     };
     var floatPanelSection = {
-      title: '产品价值',
+      title: '功能特性',
       items: [
         {
           img  : img_database,
-          title: '多种数据源接入',
+          title: '多种数据源支持',
           desc : `集成主流数据库支持，
-                可接入MySQL、Redis、InfluxDB、SQL Server、Oracle、ES等多种类型数据库`,
+                  可接入MySQL、Redis、InfluxDB、SQL Server、Oracle、ES等多种类型数据库`,
         },
         {
           img  : img_code,
-          title: '零服务搭建代码',
+          title: '直接编写业务代码',
           desc : `基于Python语言的运行时环境，同时提供多种内置功能。
                   发布后函数可自动生成API，轻松进行应用开发，提高效率`,
         },
         {
           img  : img_link,
           title: '开箱即用',
-          desc : `完全基于Docker构建，一行命令即可启动。
+          desc : `完全基于Docker构建，部署简单。
                   同时提供携带版，无公网环境也能运行`,
         },
       ]
@@ -94,20 +94,20 @@ export default {
       title: '产品优势',
       items: [
         {
+          title: '功能丰富',
+          desc : `开箱即用，每个函数都可以生成API接口，且可以随时开关和指定有效期。
+                  API接口支持同步、异步，甚至自动定时调用`,
+        },
+        {
           title: '简单易用',
           desc : `用户只需关心面向业务的“核心代码”的具体实现，
-                  程序的运行、网络、存储、服务器等资源都交由DataFlux Func 进行透明调度，
-                  无需考虑运维问题，极大降低了服务搭建的复杂性，有效提升开发速度`,
+                  程序的运行、网络、存储、服务器等资源都交由DataFlux Func 负责处理，无需考虑运维问题。
+                  极大地降低了服务搭建的复杂性，有效提升开发速度`,
         },
         {
-          title: '灵活高效',
-          desc : `开箱即用，每个函数都是单独运行、单独部署、单独伸缩的，
-                  用户上传代码后即可自动部署，函数自动发布为API，支持同步/异步两种方式`,
-        },
-        {
-          title: '稳定可靠',
-          desc : `函数计算分布式集群化部署，如果某个可用区因自然灾害或电力故障导致瘫痪，
-                  函数计算会迅速切换到其他可用区的基础设施进行运行，以确保服务高可用。`,
+          title: '灵活部署',
+          desc : `单机部署最低只需1核1G的入门虚拟机，高可用方案可以选择k8s，
+                  支持面向不同场景的不同部署方式`,
         },
       ]
     };
@@ -116,18 +116,18 @@ export default {
       items: [
         {
           img: img_timeSeries,
-          desc : `实现与数据可视化（大屏）系统的快速集成，
-                  将监控数据进行有效的实时展示。`,
+          desc : `将格式各异的监控数据进行转换，
+                  实现与数据可视化（大屏）系统的快速集成`,
         },
         {
           img: img_ai,
           desc : `利用监控数据开发基于AI（机器学习，深度学习等）的算法模型，
-                  实现高阶的预测与异常检测`,
+                  实现高阶的预测与异常检测，快速对外提供API接口`,
         },
         {
           img: img_iot,
-          desc : `实现基于实时数据的对外部系统发送指令，通过数据来驱动IOT设备。
-                （如当电压负载超过时自动命令设备关机）`,
+          desc : `实现基于实时数据的对外部系统发送指令，通过数据来驱动IoT设备。
+                  （如当电压负载过高时自动命令设备关机）`,
         },
       ]
     };
@@ -170,22 +170,22 @@ export default {
   display: flex;
   justify-content: space-around;
 }
-.section-columns > div {
+.section-column-item {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 25%;
 }
-.section-columns > div > img {
+.section-column-item > img {
   padding-bottom: 20px;
   /*width: 100%;*/
 }
-.section-columns > div > h1 {
+.section-column-item > h1 {
   font-size: 20px;
   color: #51505B;
 }
-.section-columns > div > span {
+.section-column-item > span {
   font-size: 14px;
   display: block;
   text-align: left;
@@ -223,17 +223,19 @@ export default {
   flex-direction: column;
   justify-content: center;
   position: relative;
-  top: -150px;
+  top: -100px;
 }
-.section.bg-column-area > img {
-  position: absolute;
+.section.bg-column-area {
+  background-image: url(../assets/img/01-bg-column-area.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-.section.card-area .section-columns > div {
+.section.card-area .section-column-item {
   border: 1px solid #E9EBF0;;
   border-radius: 5px;
   padding: 20px;
 }
-.section.card-area .section-columns > div > img {
+.section.card-area .section-column-item > img {
   width: 100%;
 }
 </style>

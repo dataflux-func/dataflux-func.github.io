@@ -23,6 +23,9 @@ export default {
 </script>
 
 <style>
+html {
+  min-width: 1280px;
+}
 html, body {
   height: 100%;
   margin: 0;
