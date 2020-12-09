@@ -1,7 +1,6 @@
 <template>
-  <div class="doc">
-    This is Document page
-    <p v-for="x, i in 'x'.repeat(30)">{{ i + 1 }}内容</p>
+  <div class="quick-start">
+    This is QuickStart page
   </div>
 </template>
 
@@ -9,7 +8,7 @@
 // @ is an alias to /src
 
 export default {
-  name: 'Doc',
+  name: 'QuickStart',
   components: {
   }
 }
@@ -17,6 +16,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.doc {
+.quick-start {
 }
 </style>

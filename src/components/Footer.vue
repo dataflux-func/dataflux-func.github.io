@@ -1,38 +1,15 @@
 <template>
   <div class="footer">
-    <div class="column">
-      <span class="column-title">文档与支持</span>
+    <div class="copyright">{{ copyright }}</div>
 
-      <span>帮助中心</span><br>
-      <span>常见问题</span><br>
-      <span>开源项目</span><br>
-    </div>
+    <div class="column" v-for="col in columns">
+      <span class="column-title">{{ col.title }}</span>
 
-    <div class="column">
-      <span class="column-title">相关协议</span>
-
-      <span>服务协议</span><br>
-      <span>法律声明</span><br>
-      <span>数据安全保密协议</span><br>
-    </div>
-
-    <div class="column">
-      <span class="column-title">关于我们</span>
-
-      <span>公司简介</span><br>
-    </div>
-
-    <div class="column">
-      <span class="column-title">联系方式</span>
-
-      <span>热线电话：400-882-3320</span><br>
-      <span>联系邮箱：marketing@jiagouyun.com</span><br>
-      <span>总部地址：上海市浦东新区科苑路 399号张江创新园 7号楼</span></div>
-
-    <div class="copyright">
-      © 2013-{{ new Date().getFullYear() }}
-      上海驻云信息科技有限公司
-      沪公网安备 31011502010862号 | 沪ICP备 13034243号-4
+      <template v-for="item in col.items">
+        <a v-if="item.link" :href="item.link" target="_blank">{{ item.title }}</a>
+        <span v-else>{{ item.title }}</span>
+        <br>
+      </template>
     </div>
   </div>
 </template>
@@ -40,6 +17,50 @@
 <script>
 export default {
   name: 'Footer',
+  data() {
+    var copyright = `© 2013-${ new Date().getFullYear() }
+                    上海驻云信息科技有限公司
+                    沪公网安备 31011502010862号 | 沪ICP备 13034243号-4`;
+    var columns = [
+      {
+        title: '文档与支持',
+        items: [
+          { title: '帮助中心',   link: 'https://help.dataflux.cn/' },
+          { title: 'APP下载',    link: 'https://www.dataflux.cn/mobile' },
+          { title: '开源项目',   link: 'https://github.com/CloudCare' },
+          { title: '云市场店铺', link: 'https://shop0753v9m2.market.aliyun.com/?spm=5176.730005.productlist.d_4924991.f22c3524ONCely' },
+        ]
+      },
+      {
+        title: '相关协议',
+        items: [
+          { title: '服务协议',         link: 'https://help.dataflux.cn/doc/e90ce9998ee3e23a288ed332d8a0367c0bfe4f2a' },
+          { title: '法律声明',         link: 'https://help.dataflux.cn/doc/d52d288bf14ea21ec038a56e826d53828dc53fa8' },
+          { title: '数据安全保密协议', link: 'https://help.dataflux.cn/doc/7e05880bf8a23c26603784a7b017c878b1729ef5' },
+        ]
+      },
+      {
+        title: '关于我们',
+        items: [
+          { title: '公司简介',      link: 'https://www.cloudcare.cn/about.html?type=about_1' },
+          { title: 'DataFlux 视频', link: 'https://www.dataflux.cn/video' },
+        ]
+      },
+      {
+        title: '联系方式',
+        items: [
+          { title: '热线电话：400-882-3320'},
+          { title: '联系邮箱：marketing@jiagouyun.com'},
+          { title: '总部地址：上海市浦东新区科苑路 399号张江创新园 7号楼'},
+        ]
+      }
+    ]
+
+    return {
+      copyright,
+      columns,
+    }
+  },
 }
 </script>
 
@@ -58,11 +79,15 @@ export default {
   align-items: top;
   justify-content: center;
 }
-.column {
+.footer .column:last-child > .column-title {
+  padding-right: 0;
+}
+.column, .column a {
   font-size: 14px;
   color: #B4B4B4;
   line-height: 32px;
   text-align: left;
+  text-decoration: none;
 }
 .column .column-title {
   font-size: 18px;

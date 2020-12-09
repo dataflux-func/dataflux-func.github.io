@@ -3,9 +3,8 @@
     <img id="logo" src="@/assets/img/00-logo-small.png" />
 
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/doc">Document</router-link> |
-      <router-link to="/about">About</router-link>
+      <router-link to="/">DataFlux Func</router-link>
+      | <router-link to="/quick-start">Quick Start</router-link>
     </div>
   </div>
 </template>
@@ -20,18 +19,26 @@ export default {
 <style scoped>
 .header {
   height: 30px;
-  padding: 10px 30px;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 9999;
 }
 </style>
 
 <style>
 #logo {
   float: left;
+  padding-left: 30px;
   height: 100%;
 }
 
 #nav {
   float: right;
+  padding-right: 30px;
 }
 
 #nav a {

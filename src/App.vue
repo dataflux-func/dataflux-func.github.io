@@ -28,6 +28,11 @@ html, body {
   margin: 0;
 }
 
+a {
+  color: #2c3e50;
+  text-decoration: none;
+}
+
 #app {
   height: 100%;
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -41,6 +46,6 @@ html, body {
   min-height: 100%;
 }
 #footer-push {
-  height: 300px; /* Footer 高度 */
+  height: 400px; /* Footer 高度 */
 }
 </style>
