@@ -28,6 +28,9 @@ export default {
   justify-content: space-between;
   z-index: 9999;
 }
+.header a {
+  border: none;
+}
 </style>
 
 <style>

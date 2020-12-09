@@ -32,8 +32,11 @@ html, body {
 }
 
 a {
-  color: #2c3e50;
+  color: #ff6600;
   text-decoration: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-bottom: dashed 1px;
 }
 
 #app {
