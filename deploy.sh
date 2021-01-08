@@ -5,7 +5,7 @@ set -e
 npm run build
 
 cd docs
-echo 'dataflux-func.pastgift-studio.com' > CNAME
+echo 'function.dataflux.cn' > CNAME
 
 cd -
 
