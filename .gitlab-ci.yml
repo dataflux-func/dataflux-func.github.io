@@ -1,0 +1,15 @@
+variables:
+  REPOSITORY: "registry.jiagouyun.com/cloudcare-front/dataflux-func-site"
+
+stages:
+  - build
+
+job_build:
+  stage: build
+  only:
+    - master
+  script:
+    - docker build -t $REPOSITORY:$CI_COMMIT_REF_SLUG .
+    - docker push $REPOSITORY:$CI_COMMIT_REF_SLUG
+  tags:
+    - cloudcare
