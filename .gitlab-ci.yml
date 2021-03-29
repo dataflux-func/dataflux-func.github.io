@@ -1,6 +1,9 @@
 variables:
   REPOSITORY: "registry.jiagouyun.com/cloudcare-front/dataflux-func-site"
 
+  OSS_RESOURCE_BASE_URL: oss://zhuyun-static-files-production/dataflux-func/resource
+  DEVELOPMENT_GUIDE    : development-guide.md
+  MAINTENANCE_GUIDE    : maintenance-guide.md
 stages:
   - build
 
@@ -11,5 +14,7 @@ job_build:
   script:
     - docker build -t $REPOSITORY:$CI_COMMIT_REF_SLUG .
     - docker push $REPOSITORY:$CI_COMMIT_REF_SLUG
+    - tools/ossutil64 cp contents/${DEVELOPMENT_GUIDE} ${OSS_RESOURCE_BASE_URL}/docs/${DEVELOPMENT_GUIDE} -f -e ${OSS_ENDPOINT} -i ${ZY_STATIC_OSS_AK_ID} -k ${ZY_STATIC_OSS_AK_SECRET}
+    - tools/ossutil64 cp contents/${MAINTENANCE_GUIDE} ${OSS_RESOURCE_BASE_URL}/docs/${MAINTENANCE_GUIDE} -f -e ${OSS_ENDPOINT} -i ${ZY_STATIC_OSS_AK_ID} -k ${ZY_STATIC_OSS_AK_SECRET}
   tags:
     - cloudcare
