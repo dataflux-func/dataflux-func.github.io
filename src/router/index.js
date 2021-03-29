@@ -11,9 +11,9 @@ const routes = [
     component: Home
   },
   {
-    path: '/quick-start',
-    name: 'QuickStart',
-    component: () => import('../views/QuickStart.vue'),
+    path: '/read',
+    name: 'MarkdownViewer',
+    component: () => import('../views/MarkdownViewer.vue'),
   },
 ]
 
