@@ -1,6 +1,6 @@
 # DataFlux Func 维护手册
 
-本文档主要面向运维，提供有关DataFlux Func 部署、故障排除等相关介绍
+本文档主要面向运维，提供有关DataFlux Func 安装部署、日常维护、故障排除等相关介绍
 
 ## 目录
 
