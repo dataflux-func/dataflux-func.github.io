@@ -1,7 +1,7 @@
 <template>
   <div class="markdown-viewer">
     <div class="markdown-viewer-content">
-      <a id="donwload-doc-src" v-if="docURL" :href="docURL" target="_blank">下载源文档（Markdown）</a>
+      <a id="donwload-doc-src" v-if="docURL" :href="docURL">下载源文档（Markdown）</a>
       <div v-html="docHTML"></div>
     </div>
   </div>

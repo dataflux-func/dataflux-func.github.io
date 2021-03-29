@@ -5,6 +5,7 @@
     <div id="nav">
       <router-link to="/">主页</router-link>
       | <router-link :to="{ name: 'MarkdownViewer', query: { q: 'README.md' }}">快速开始</router-link>
+      | <a href="https://t.dataflux.cn/func-user-guide" target="_blank">用户手册（PDF）</a>
       | <router-link :to="{ name: 'MarkdownViewer', query: { q: 'docs/maintenance-guide.md' }}">维护手册</router-link>
       | <router-link :to="{ name: 'MarkdownViewer', query: { q: 'docs/development-guide.md' }}">开发手册</router-link>
     </div>

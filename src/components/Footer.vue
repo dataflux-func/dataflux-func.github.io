@@ -6,7 +6,7 @@
       <span class="column-title">{{ col.title }}</span>
 
       <template v-for="item in col.items">
-        <a v-if="item.link" :href="item.link" target="_blank">{{ item.title }}</a>
+        <a v-if="item.link" :href="item.link">{{ item.title }}</a>
         <span v-else>{{ item.title }}</span>
         <br>
       </template>
