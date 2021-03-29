@@ -105,15 +105,14 @@ DataFlux Func 支持将所需资源下载后，通过U盘等移动设备带入�
 
 如需要手工下载，以下是所有的文件列表：
 
-1. [README.md](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/resource/README.md)
-2. [Docker 二进制程序： docker-18.06.3-ce.tgz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/docker-18.06.3-ce.tgz)
-3. [Docker 服务配置文件： docker.service](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/docker.service)
-4. [MySQL 镜像： mysql.tar.gz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/mysql.tar.gz)
-5. [Redis 镜像： redis.tar.gz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/redis.tar.gz)
-6. [Mosquitto 镜像： eclipse-mosquitto.tar.gz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/eclipse-mosquitto.tar.gz)
-7. [DataFluxFunc 镜像： dataflux-func.tar.gz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/dataflux-func.tar.gz)
-8. [Docker Stack 配置文件：docker-stack.example.yaml](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/docker-stack.example.yaml)
-9. [DataFluxFunc 部署脚本：run-portable.sh](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/run-portable.sh)
+1. [Docker 二进制程序： docker-18.06.3-ce.tgz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/docker-18.06.3-ce.tgz)
+2. [Docker 服务配置文件： docker.service](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/docker.service)
+3. [MySQL 镜像： mysql.tar.gz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/mysql.tar.gz)
+4. [Redis 镜像： redis.tar.gz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/redis.tar.gz)
+5. [Mosquitto 镜像： eclipse-mosquitto.tar.gz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/eclipse-mosquitto.tar.gz)
+6. [DataFluxFunc 镜像： dataflux-func.tar.gz](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/dataflux-func.tar.gz)
+7. [Docker Stack 配置文件：docker-stack.example.yaml](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/docker-stack.example.yaml)
+8. [DataFluxFunc 部署脚本：run-portable.sh](https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/portable/run-portable.sh)
 
 手工下载所有文件后，放入新建的`dataflux-func-portable`目录下即可。
 
@@ -448,10 +447,10 @@ DataFlux Func 支持多份部署以满足高可用要求。
 
 可能原因及解决方案：
 
-|                      原因                     |                         解决方案                        |
-|-----------------------------------------------|---------------------------------------------------------|
-| 所用操作系统不支持Docker 及相关组件的安装运行 | 更换操作系统                                            |
-| 主机具有多个网卡                              | 参考上文「README」中有关Docker Swarm 初始化的描述 |
+|                      原因                     |                       解决方案                      |
+|-----------------------------------------------|-----------------------------------------------------|
+| 所用操作系统不支持Docker 及相关组件的安装运行 | 更换操作系统                                        |
+| 主机具有多个网卡                              | 参考上文「软件准备」中有关Docker Swarm 初始化的描述 |
 
 在排除问题后，重新运行脚本即可
 
