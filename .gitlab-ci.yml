@@ -2,6 +2,7 @@ variables:
   REPOSITORY: "registry.jiagouyun.com/cloudcare-front/dataflux-func-site"
 
   OSS_RESOURCE_BASE_URL: oss://zhuyun-static-files-production/dataflux-func/resource
+  OSS_ENDPOINT         : http://oss-cn-hangzhou-internal.aliyuncs.com
   DEVELOPMENT_GUIDE    : development-guide.md
   MAINTENANCE_GUIDE    : maintenance-guide.md
 stages:
