@@ -44,7 +44,7 @@ export default {
   },
   computed: {
     BASE_MARKDOWN_URL() {
-      return 'https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/resource/docs';
+      return 'https://zhuyun-static-files-production.oss-cn-hangzhou.aliyuncs.com/dataflux-func/resource/docs/';
     },
   },
   data() {
