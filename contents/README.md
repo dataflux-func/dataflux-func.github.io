@@ -4,7 +4,7 @@ DataFlux Func 是一个基于Python 的类ServerLess 的脚本开发、管理及
 
 > `DataFlux Func` 读作`data flux function`，系统内有时会缩写为`DFF`。
 
-前身为[DataFlux](https://dataflux.cn/) 下属的一个函数计算组建，目前已成为可独立运行的系统。
+前身为[DataFlux](https://dataflux.cn/) 下属的一个函数计算组件，目前已成为可独立运行的系统。
 
 本系统主要分为2个部分：
 
