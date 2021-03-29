@@ -23,7 +23,10 @@ export default {
         this.docHTML = 'Loading...';
 
         this.docURL = this.BASE_MARKDOWN_URL + this.$route.query.q;
-        axios.get(this.docURL).then(resp => {
+        let headers = {
+          'Cache-Control': 'no-cache',
+        }
+        axios.get(this.docURL, { headers: headers }).then(resp => {
           let mdLines = resp.data.split('\n');
 
           let reducedMDLines = [];
