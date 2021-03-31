@@ -42,8 +42,8 @@
         - [3.3.11 DataFlux DataWay](#3311-dataflux-dataway)
     - [3.4 获取环境变量 `DFF.ENV(...)`](#34-%E8%8E%B7%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-dffenv)
     - [3.5 接口响应控制](#35-%E6%8E%A5%E5%8F%A3%E5%93%8D%E5%BA%94%E6%8E%A7%E5%88%B6)
-        - [3.5.1 `DFF.RESP(...)`](#351-dffresp)
-        - [3.5.2 `DFF.RESP_FILE(...)`](#352-dffresp_file)
+        - [3.5.1 返回数据 `DFF.RESP(...)`](#351-%E8%BF%94%E5%9B%9E%E6%95%B0%E6%8D%AE-dffresp)
+        - [3.5.2 返回文件 `DFF.RESP_FILE(...)`](#352-%E8%BF%94%E5%9B%9E%E6%96%87%E4%BB%B6-dffresp_file)
 - [3. 脚本集、脚本规划设计](#3-%E8%84%9A%E6%9C%AC%E9%9B%86%E3%80%81%E8%84%9A%E6%9C%AC%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1)
     - [3.1 按照用途、类型合理划分脚本集和脚本](#31-%E6%8C%89%E7%85%A7%E7%94%A8%E9%80%94%E3%80%81%E7%B1%BB%E5%9E%8B%E5%90%88%E7%90%86%E5%88%92%E5%88%86%E8%84%9A%E6%9C%AC%E9%9B%86%E5%92%8C%E8%84%9A%E6%9C%AC)
     - [3.2 调用另一个脚本中的函数](#32-%E8%B0%83%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0)
@@ -819,7 +819,7 @@ except Exception as e:
 函数的返回值，除了以往直接返回字符串、JSON外，
 还可以使用`DFF.RESP(...)`/`DFF.RESP_FILE(...)`用于控制接口返回内容。
 
-#### 3.5.1 `DFF.RESP(...)`
+#### 3.5.1 返回数据 `DFF.RESP(...)`
 
 当返回的内容为字符串、JSON等「数据」时，可使用`DFF.RESP(...)`进行细节控制。
 
@@ -885,7 +885,7 @@ def case_5():
     return DFF.RESP(data, content_type='html', headers=headers)
 ```
 
-#### 3.5.2 `DFF.RESP_FILE(...)`
+#### 3.5.2 返回文件 `DFF.RESP_FILE(...)`
 
 当返回的内容为「磁盘上的文件」时，可使用`DFF.RESP_FILE(...)`进行细节控制。
 
