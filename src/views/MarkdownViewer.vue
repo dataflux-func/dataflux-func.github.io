@@ -176,7 +176,6 @@ export default {
   color: #ff6600;
   font-size: 16px;
   line-height: 26px;
-  cursor: pointer;
 }
 #index > ul > li > ol {
   list-style: decimal;
