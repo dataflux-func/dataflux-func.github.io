@@ -113,6 +113,12 @@ export default {
   padding-top: 50px;
   border-bottom: dashed 1px lightgrey;
 }
+.markdown-viewer h2 {
+  padding-top: 30px;
+}
+.markdown-viewer h3 {
+  padding-top: 30px;
+}
 .markdown-viewer p,
 .markdown-viewer li {
   color: #767681;
