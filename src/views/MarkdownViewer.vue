@@ -2,7 +2,7 @@
   <div class="markdown-viewer">
     <div class="markdown-viewer-content">
       <a id="donwload-doc-src" v-if="docURL" :href="docURL">下载源文档（Markdown）</a>
-      <div v-html="docHTML"></div>
+      <div v-highlight v-html="docHTML"></div>
     </div>
   </div>
 </template>
@@ -109,6 +109,7 @@ export default {
 .markdown-viewer table {
   width: 100%;
   border-collapse: collapse;
+  margin: 20px 0;
 }
 .markdown-viewer th {
   background-color: #eee;
@@ -117,7 +118,16 @@ export default {
 .markdown-viewer th,
 .markdown-viewer td {
   padding: 15px 5px;
-  border-bottom: 1px dashed #eee;
+  border: 1px dashed #ddd;
+  font-size: 14px;
+}
+
+.markdown-viewer em {
+  color: red;
+  font-weight: bold;
+}
+.markdown-viewer em:before {
+  content: "!! ";
 }
 
 #donwload-doc-src {
