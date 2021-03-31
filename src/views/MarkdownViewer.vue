@@ -1,7 +1,14 @@
 <template>
   <div class="markdown-viewer">
     <div class="markdown-viewer-content">
-      <a id="donwload-doc-src" v-if="docURL" :href="docURL">下载源文档（Markdown）</a>
+      <div id="donwload-doc-src">
+        <template v-if="docURL">
+          <a :href="docURL">下载Markdown源文档</a>
+          |
+        </template>
+        <a id="backToTop">回到顶部</a>
+      </div>
+
       <div v-highlight v-html="docHTML"></div>
     </div>
   </div>
@@ -55,6 +62,31 @@ export default {
       docURL : '',
       docHTML: '',
     }
+  },
+  mounted() {
+    $(document).on('click', '#backToTop', function() {
+      window.scrollTo(0, 0);
+    });
+
+    $(document).on('click', '#index li', function(event) {
+      event.stopPropagation();
+
+      let destText = event.target.innerText.split('\n')[0].trim();
+      console.log('destText', destText)
+
+      let destElem = null;
+      $('h1,h2,h3,h4,h5,h6').each(function(index, headerElem) {
+        let headerText = headerElem.innerText.trim();
+        console.log('headerText', headerText)
+        if (headerText === destText) {
+          destElem = headerElem;
+        };
+      });
+
+      if (destElem) {
+        destElem.scrollIntoView();
+      }
+    });
   },
 }
 </script>
@@ -143,6 +175,7 @@ export default {
   color: #ff6600;
   font-size: 16px;
   line-height: 26px;
+  cursor: pointer;
 }
 #index > ul > li > ol {
   list-style: decimal;

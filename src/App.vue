@@ -25,6 +25,7 @@ export default {
 <style>
 html {
   min-width: 1280px;
+  scroll-behavior: smooth;
 }
 html, body {
   height: 100%;
@@ -37,6 +38,7 @@ a {
   margin-left: 10px;
   margin-right: 10px;
   border-bottom: dashed 1px;
+  cursor: pointer;
 }
 
 #app {

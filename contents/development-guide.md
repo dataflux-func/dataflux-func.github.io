@@ -7,48 +7,48 @@
 
 ## 目录
 
-<!-- MarkdownTOC autolink="false" levels="1,2,3,4" -->
+<!-- MarkdownTOC levels="1,2,3,4" -->
 
-- 1 第一步
-- 2 使用内置功能
-    - 2.1 导出函数 `DFF.API(...)`
-        - 2.1.1 参数`title`
-        - 2.1.2 参数`category`/`tags`
-        - 2.1.3 参数`timeout`/`api_timeout`
-        - 2.1.4 参数`cache_result`
-        - 2.1.5 参数`fixed_crontab`
-    - 2.2 操作数据源 `DFF.SRC(...)`
-        - 2.2.1 InfluxDB
-        - 2.2.2 MySQL
-        - 2.2.3 Redis
-        - 2.2.4 Memcached
-        - 2.2.5 ClickHouse
-        - 2.2.6 Oracle Database
-        - 2.2.7 Microsoft SQL Server
-        - 2.2.8 PostgreSQL
-        - 2.2.9 mongoDB
-        - 2.2.10 elasticsearch
-        - 2.2.11 DataFlux DataWay
-    - 2.3 获取环境变量 `DFF.ENV(...)`
-    - 2.4 获取环境变量 `print(...)`
-- 3 脚本集、脚本规划设计
-    - 3.1 按照用途、类型合理划分脚本集和脚本
-    - 3.2 调用另一个脚本中的函数
-    - 3.3 单个脚本的代码量及依赖链
-    - 3.4 不划分脚本的情况
-- 4 常见代码处理方式
-    - 4.1 使用列表生成器预发
-    - 4.2 使用内置`map`函数处理列表
-    - 4.3 获取JSON数据中多层嵌套中的值
-    - 4.4 使用`arrow`库正确处理时间
-    - 4.5 向外部发送HTTP请求
-    - 4.6 发送钉钉机器人消息
-    - 4.7 避免SQL注入
+- [1. 第一步](#1-%E7%AC%AC%E4%B8%80%E6%AD%A5)
+- [2. 使用内置功能](#2-%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E5%8A%9F%E8%83%BD)
+    - [2.1 导出函数 `DFF.API(...)`](#21-%E5%AF%BC%E5%87%BA%E5%87%BD%E6%95%B0-dffapi)
+        - [2.1.1 参数`title`](#211-%E5%8F%82%E6%95%B0title)
+        - [2.1.2 参数`category`/`tags`](#212-%E5%8F%82%E6%95%B0categorytags)
+        - [2.1.3 参数`timeout`/`api_timeout`](#213-%E5%8F%82%E6%95%B0timeoutapi_timeout)
+        - [2.1.4 参数`cache_result`](#214-%E5%8F%82%E6%95%B0cache_result)
+        - [2.1.5 参数`fixed_crontab`](#215-%E5%8F%82%E6%95%B0fixed_crontab)
+    - [2.2 操作数据源 `DFF.SRC(...)`](#22-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E6%BA%90-dffsrc)
+        - [2.2.1 InfluxDB](#221-influxdb)
+        - [2.2.2 MySQL](#222-mysql)
+        - [2.2.3 Redis](#223-redis)
+        - [2.2.4 Memcached](#224-memcached)
+        - [2.2.5 ClickHouse](#225-clickhouse)
+        - [2.2.6 Oracle Database](#226-oracle-database)
+        - [2.2.7 Microsoft SQL Server](#227-microsoft-sql-server)
+        - [2.2.8 PostgreSQL](#228-postgresql)
+        - [2.2.9 mongoDB](#229-mongodb)
+        - [2.2.10 elasticsearch](#2210-elasticsearch)
+        - [2.2.11 DataFlux DataWay](#2211-dataflux-dataway)
+    - [2.3 获取环境变量 `DFF.ENV(...)`](#23-%E8%8E%B7%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-dffenv)
+    - [2.4 获取环境变量 `print(...)`](#24-%E8%8E%B7%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-print)
+- [3. 脚本集、脚本规划设计](#3-%E8%84%9A%E6%9C%AC%E9%9B%86%E3%80%81%E8%84%9A%E6%9C%AC%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1)
+    - [3.1 按照用途、类型合理划分脚本集和脚本](#31-%E6%8C%89%E7%85%A7%E7%94%A8%E9%80%94%E3%80%81%E7%B1%BB%E5%9E%8B%E5%90%88%E7%90%86%E5%88%92%E5%88%86%E8%84%9A%E6%9C%AC%E9%9B%86%E5%92%8C%E8%84%9A%E6%9C%AC)
+    - [3.2 调用另一个脚本中的函数](#32-%E8%B0%83%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0)
+    - [3.3 单个脚本的代码量及依赖链](#33-%E5%8D%95%E4%B8%AA%E8%84%9A%E6%9C%AC%E7%9A%84%E4%BB%A3%E7%A0%81%E9%87%8F%E5%8F%8A%E4%BE%9D%E8%B5%96%E9%93%BE)
+    - [3.4 不划分脚本的情况](#34-%E4%B8%8D%E5%88%92%E5%88%86%E8%84%9A%E6%9C%AC%E7%9A%84%E6%83%85%E5%86%B5)
+- [4. 常见代码处理方式](#4-%E5%B8%B8%E8%A7%81%E4%BB%A3%E7%A0%81%E5%A4%84%E7%90%86%E6%96%B9%E5%BC%8F)
+    - [4.1 使用列表生成器预发](#41-%E4%BD%BF%E7%94%A8%E5%88%97%E8%A1%A8%E7%94%9F%E6%88%90%E5%99%A8%E9%A2%84%E5%8F%91)
+    - [4.2 使用内置`map`函数处理列表](#42-%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AEmap%E5%87%BD%E6%95%B0%E5%A4%84%E7%90%86%E5%88%97%E8%A1%A8)
+    - [4.3 获取JSON数据中多层嵌套中的值](#43-%E8%8E%B7%E5%8F%96json%E6%95%B0%E6%8D%AE%E4%B8%AD%E5%A4%9A%E5%B1%82%E5%B5%8C%E5%A5%97%E4%B8%AD%E7%9A%84%E5%80%BC)
+    - [4.4 使用`arrow`库正确处理时间](#44-%E4%BD%BF%E7%94%A8arrow%E5%BA%93%E6%AD%A3%E7%A1%AE%E5%A4%84%E7%90%86%E6%97%B6%E9%97%B4)
+    - [4.5 向外部发送HTTP请求](#45-%E5%90%91%E5%A4%96%E9%83%A8%E5%8F%91%E9%80%81http%E8%AF%B7%E6%B1%82)
+    - [4.6 发送钉钉机器人消息](#46-%E5%8F%91%E9%80%81%E9%92%89%E9%92%89%E6%9C%BA%E5%99%A8%E4%BA%BA%E6%B6%88%E6%81%AF)
+    - [4.7 避免SQL注入](#47-%E9%81%BF%E5%85%8Dsql%E6%B3%A8%E5%85%A5)
 
 <!-- /MarkdownTOC -->
 
 
-## 1 第一步
+## 1. 第一步
 
 在DataFlux Func 中编写代码，与正常编写Python 代码并无太大区别。
 对于需要导出为API的函数，添加内置的`@DFF.API(...)`装饰器即可实现。
@@ -66,7 +66,7 @@ def hello_world(message=None):
     return ret
 ```
 
-## 2 使用内置功能
+## 2. 使用内置功能
 
 为了方便脚本编写，以及在脚本中使用各种DataFlux Func提供的功能。
 DataFlux Func在脚本运行上下文注入了一些额外功能。
@@ -633,7 +633,7 @@ DataFlux Func重新封装了`print(...)`函数，
 print('Some log message')
 ```
 
-## 3 脚本集、脚本规划设计
+## 3. 脚本集、脚本规划设计
 
 脚本集、脚本、函数应当按照一定逻辑编排组织，而不是将代码随意堆砌在一起。
 合理编排脚本集和脚本有利于代码的维护以及系统运行效率。
@@ -731,7 +731,7 @@ Python内置模块和第三方模块不受此限制影响
 
 请根据实际情况选择最合理的方式规划脚本
 
-## 4 常见代码处理方式
+## 4. 常见代码处理方式
 
 Python是相当便捷的语言，特定的问题都有比较套路化的处理方式。
 以下是一些常见问题的处理方式：
