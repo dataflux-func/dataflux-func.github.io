@@ -11,28 +11,39 @@
 
 <!-- MarkdownTOC levels="1,2,3,4" -->
 
-- [1. 第一步](#1-%E7%AC%AC%E4%B8%80%E6%AD%A5)
-- [2. 使用内置功能](#2-%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E5%8A%9F%E8%83%BD)
-    - [2.1 导出函数 `DFF.API(...)`](#21-%E5%AF%BC%E5%87%BA%E5%87%BD%E6%95%B0-dffapi)
-        - [2.1.1 参数`title`](#211-%E5%8F%82%E6%95%B0title)
-        - [2.1.2 参数`category`/`tags`](#212-%E5%8F%82%E6%95%B0categorytags)
-        - [2.1.3 参数`timeout`/`api_timeout`](#213-%E5%8F%82%E6%95%B0timeoutapi_timeout)
-        - [2.1.4 参数`cache_result`](#214-%E5%8F%82%E6%95%B0cache_result)
-        - [2.1.5 参数`fixed_crontab`](#215-%E5%8F%82%E6%95%B0fixed_crontab)
-    - [2.2 操作数据源 `DFF.SRC(...)`](#22-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E6%BA%90-dffsrc)
-        - [2.2.1 InfluxDB](#221-influxdb)
-        - [2.2.2 MySQL](#222-mysql)
-        - [2.2.3 Redis](#223-redis)
-        - [2.2.4 Memcached](#224-memcached)
-        - [2.2.5 ClickHouse](#225-clickhouse)
-        - [2.2.6 Oracle Database](#226-oracle-database)
-        - [2.2.7 Microsoft SQL Server](#227-microsoft-sql-server)
-        - [2.2.8 PostgreSQL](#228-postgresql)
-        - [2.2.9 mongoDB](#229-mongodb)
-        - [2.2.10 elasticsearch](#2210-elasticsearch)
-        - [2.2.11 DataFlux DataWay](#2211-dataflux-dataway)
-    - [2.3 获取环境变量 `DFF.ENV(...)`](#23-%E8%8E%B7%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-dffenv)
-    - [2.4 输出日志 `print(...)`](#24-%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97-print)
+- [A. 重要提示](#a-%E9%87%8D%E8%A6%81%E6%8F%90%E7%A4%BA)
+- [1. 开始编写第一个函数](#1-%E5%BC%80%E5%A7%8B%E7%BC%96%E5%86%99%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0)
+    - [1.1 支持文件上传的函数](#11-%E6%94%AF%E6%8C%81%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E7%9A%84%E5%87%BD%E6%95%B0)
+- [2. 调用授权链接](#2-%E8%B0%83%E7%94%A8%E6%8E%88%E6%9D%83%E9%93%BE%E6%8E%A5)
+    - [2.1 授权链接调用详解](#21-%E6%8E%88%E6%9D%83%E9%93%BE%E6%8E%A5%E8%B0%83%E7%94%A8%E8%AF%A6%E8%A7%A3)
+        - [2.1.1 `POST`标准传参](#211-post%E6%A0%87%E5%87%86%E4%BC%A0%E5%8F%82)
+        - [2.1.2 `POST`简化传参](#212-post%E7%AE%80%E5%8C%96%E4%BC%A0%E5%8F%82)
+        - [2.1.3 `GET`标准传参](#213-get%E6%A0%87%E5%87%86%E4%BC%A0%E5%8F%82)
+        - [2.1.4 `GET`简化传参](#214-get%E7%AE%80%E5%8C%96%E4%BC%A0%E5%8F%82)
+- [3. 使用内置功能](#3-%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E5%8A%9F%E8%83%BD)
+    - [3.1 输出日志 `print(...)`](#31-%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97-print)
+    - [3.2 导出函数 `DFF.API(...)`](#32-%E5%AF%BC%E5%87%BA%E5%87%BD%E6%95%B0-dffapi)
+        - [3.2.1 参数`title`](#321-%E5%8F%82%E6%95%B0title)
+        - [3.2.2 参数`category`/`tags`](#322-%E5%8F%82%E6%95%B0categorytags)
+        - [3.2.3 参数`timeout`/`api_timeout`](#323-%E5%8F%82%E6%95%B0timeoutapi_timeout)
+        - [3.2.4 参数`cache_result`](#324-%E5%8F%82%E6%95%B0cache_result)
+        - [3.2.5 参数`fixed_crontab`](#325-%E5%8F%82%E6%95%B0fixed_crontab)
+    - [3.3 操作数据源 `DFF.SRC(...)`](#33-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E6%BA%90-dffsrc)
+        - [3.3.1 InfluxDB](#331-influxdb)
+        - [3.3.2 MySQL](#332-mysql)
+        - [3.3.3 Redis](#333-redis)
+        - [3.3.4 Memcached](#334-memcached)
+        - [3.3.5 ClickHouse](#335-clickhouse)
+        - [3.3.6 Oracle Database](#336-oracle-database)
+        - [3.3.7 Microsoft SQL Server](#337-microsoft-sql-server)
+        - [3.3.8 PostgreSQL](#338-postgresql)
+        - [3.3.9 mongoDB](#339-mongodb)
+        - [3.3.10 elasticsearch](#3310-elasticsearch)
+        - [3.3.11 DataFlux DataWay](#3311-dataflux-dataway)
+    - [3.4 获取环境变量 `DFF.ENV(...)`](#34-%E8%8E%B7%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-dffenv)
+    - [3.5 接口响应控制](#35-%E6%8E%A5%E5%8F%A3%E5%93%8D%E5%BA%94%E6%8E%A7%E5%88%B6)
+        - [3.5.1 `DFF.RESP(...)`](#351-dffresp)
+        - [3.5.2 `DFF.RESP_FILE(...)`](#352-dffresp_file)
 - [3. 脚本集、脚本规划设计](#3-%E8%84%9A%E6%9C%AC%E9%9B%86%E3%80%81%E8%84%9A%E6%9C%AC%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1)
     - [3.1 按照用途、类型合理划分脚本集和脚本](#31-%E6%8C%89%E7%85%A7%E7%94%A8%E9%80%94%E3%80%81%E7%B1%BB%E5%9E%8B%E5%90%88%E7%90%86%E5%88%92%E5%88%86%E8%84%9A%E6%9C%AC%E9%9B%86%E5%92%8C%E8%84%9A%E6%9C%AC)
     - [3.2 调用另一个脚本中的函数](#32-%E8%B0%83%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0)
@@ -49,9 +60,17 @@
 
 <!-- /MarkdownTOC -->
 
+## A. 重要提示
+
+*在DataFlux Func 的使用过程中，*
+
+*请勿多人登录同一个账号，也不要多人同时编辑同一份代码。*
+
+*以免造成代码相互覆盖、丢失的问题*
 
 
-## 1. 第一步
+
+## 1. 开始编写第一个函数
 
 在DataFlux Func 中编写代码，与正常编写Python 代码并无太大区别。
 对于需要导出为API的函数，添加内置的`@DFF.API(...)`装饰器即可实现。
@@ -69,16 +88,187 @@ def hello_world(message=None):
     return ret
 ```
 
+此时，为本函数创建一个授权链接，即可实现在公网通过HTTP 的方式调用本函数。
+
+### 1.1 支持文件上传的函数
+
+DataFlux Func 也支持向授权链接接口上传文件。
+
+需要处理上传的文件时，可以为函数添加`files`参数接收上传的文件信息。
+文件在上传后，DataFlux Func 会自动将文件存储到一个临时上传目录供脚本进行后续处理。
+
+`files`参数由DataFlux Func 系统自动填入，内容如下：
+
+```json
+[
+    {
+        "filePath"    : "<文件临时存放地址>",
+        "originalname": "<文件原始文件名>",
+        "encoding"    : "<编码>",
+        "mimetype"    : "<MIME类型>",
+        "size"        : "<文件大小>"
+    },
+    ...
+]
+```
+
+具体Python代码示例如下：
+
+```python
+# 接收Excel文件，并将Sheet1内容返回
+from openpyxl import load_workbook
+
+@DFF.API('读取Excel')
+def read_excel(files=None):
+    excel_data = []
+    if files:
+        workbook = load_workbook(filename=files[0]['filePath'])
+        for row in workbook['Sheet1'].iter_rows(min_row=1, values_only=True):
+            excel_data.append(row)
+
+    return excel_data
+```
+
+> 上传文件的示例代码见「调用授权链接 - `POST`简化传参」
 
 
-## 2. 使用内置功能
+
+## 2. 调用授权链接
+
+为函数创建授权链接后，支持多种不同的调用方式。
+授权链接支持`GET`、`POST`两种方式。两种不同方式的参数传递同时支持「标准」、「简化」形式。
+
+此外，`POST`方式的「简化」形式还支持文件上传，以下是各种调用方式的功能支持列表：
+
+|  调用方式  | 传递`kwargs` |  `kwargs`中参数类型  | 传递`options` | 文件上传 |
+|------------|--------------|----------------------|---------------|----------|
+| `POST`标准 | 支持         | 支持JSON中的数据类型 | 支持          | 不支持   |
+| `POST`简化 | 支持         | 只能传递字符串       | 不支持        | 支持     |
+| `GET`标准  | 支持         | 支持JSON中的数据类型 | 支持          | 不支持   |
+| `GET`简化  | 支持         | 只能传递字符串       | 不支持        | 不支持   |
+
+> 在授权链接列表，可以点击「API调用示例」来查看具体调用方式
+
+### 2.1 授权链接调用详解
+
+假设存在如下函数：
+
+```python
+@DFF.API('我的函数')
+def my_func(x, y):
+    pass
+```
+
+为此函数创建的授权链接ID为`auln-xxxxx`，传递的参数为`x` = `100`（整数）, `y` = `"hello"`（字符串）。
+
+那么，各种不同的调用方式如下：
+
+#### 2.1.1 `POST`标准传参
+
+`POST`标准传参是最常用的调用方式之一。
+由于参数以JSON格式通过请求体发送，因此参数的原始类型都会保留。
+函数无需再对参数进行类型转换。
+
+如本例中，函数接收到的`x`参数即为整数，无需类型转换。
+
+```
+POST /api/v1/al/auln-xxxxx
+Content-Type: application/json
+
+{
+    "kwargs": {
+        "x": 100,
+        "y": "hello"
+    }
+}
+```
+
+#### 2.1.2 `POST`简化传参
+
+在某些情况下，如果无法发送请求体为JSON的HTTP请求，
+那么也可以类似Form表单的形式传递参数，各字段名即为参数名。
+
+由于Form表单形式传递参数时，无法区分字符串的`"100"`和整数的`100`，
+所以函数在被调用时，接收到的参数都是字符串。
+函数需要自行对参数进行类型转换。
+
+```
+POST /api/v1/al/auln-xxxxx/simplified
+Content-Type: x-www-form-urlencoded
+
+x=100&y=hello
+```
+
+此外，`POST`简化传参还额外支持文件上传（参数/字段名必须为`files`），
+需要使用`form-data/multipart`方式进行处理。
+
+前端`javascript`代码示例如下：
+
+```javascript
+var data = new FormData();
+data.append('x', '100');
+data.append('y', 'hello');
+data.append('files', document.querySelector('#file').files[0]);
+
+var xhr = new XMLHttpRequest();
+xhr.open('POST', '/api/v1/al/auln-xxxxx/simplified');
+xhr.send(data);
+```
+
+#### 2.1.3 `GET`标准传参
+
+在某些情况下，如果无法发送POST请求，也可以使用GET方式调用接口。
+
+与`POST`标准传参类似，`GET`标准传参时，将整个`kwargs`进行JSON序列化后，作为URL参数传递即可。
+由于参数实际还是以JSON格式发送，因此参数的原始类型都会保留。
+函数无需再对参数进行类型转换。
+
+如本例中，函数接收到的`x`参数即为整数，无需类型转换。
+
+```
+GET /api/v1/al/auln-xxxxx?kwargs={"x":100,"y":"hello"}
+```
+
+*注意：为了便于阅读，示例为URLEncode之前的内容，实际URL参数需要进行URLEncode*
+
+#### 2.1.4 `GET`简化传参
+
+如果函数的参数比较简单，可以使用`GET`简化传参方式传递参数，接口将更加直观。
+
+由于URL参数形式传递参数时，无法区分字符串的`"100"`和整数的`100`，
+所以函数在被调用时，接收到的参数都是字符串。
+函数需要自行对参数进行类型转换。
+
+```
+GET /api/v1/al/auln-xxxxx?x=100&y=hello
+```
+
+*注意：为了便于阅读，示例为URLEncode之前的内容，实际URL参数需要进行URLEncode*
+
+
+
+## 3. 使用内置功能
 
 为了方便脚本编写，以及在脚本中使用各种DataFlux Func提供的功能。
 DataFlux Func在脚本运行上下文注入了一些额外功能。
 
 这些功能都封装在DFF对象中（如上文出现的`@DFF.API(...)`）
 
-### 2.1 导出函数 `DFF.API(...)`
+### 3.1 输出日志 `print(...)`
+
+由于脚本编辑器是Web应用程序，
+不同于一般意义上的IDE，不支持进行单步调试等操作。
+因此，调试可以依靠运行时输出日志进行。
+
+为了让日志输出能够被DataFlux Func搜集并显示到脚本编辑器中，
+DataFlux Func重新封装了`print(...)`函数，
+使其可以将输出内容通过Web页面展现出来。如：
+
+```python
+print('Some log message')
+```
+
+### 3.2 导出函数 `DFF.API(...)`
 
 一个装饰器，用于将被修饰的函数对外开放，允许使用API方式调用。
 
@@ -95,7 +285,7 @@ DataFlux Func在脚本运行上下文注入了一些额外功能。
 | `cache_result`  | int                 |          | `None`      | 缓存结果数据时长。<br>单位：秒，`None`表示不缓存                    |
 | `fixed_crontab` | str(Crontab-format) |          | `None`      | 当函数由自动触发执行时，强制固定的Crontab配置。<br>最小支持分钟级   |
 
-#### 2.1.1 参数`title`
+#### 3.2.1 参数`title`
 
 函数标题支持中文，方便在DataFlux Func 各种操作界面/文档中展示函数名称。
 
@@ -107,7 +297,7 @@ def my_func():
     pass
 ```
 
-#### 2.1.2 参数`category`/`tags`
+#### 3.2.2 参数`category`/`tags`
 
 函数所属分类、标签列表，本身并不参与也不控制函数的运行，主要用于方便分类管理函数。
 分别使用或者各自单独使用都可以。
@@ -129,7 +319,7 @@ GET /api/v1/func-list?category=demo
 GET /api/v1/func-list?tags=tag1,tag2
 ```
 
-#### 2.1.3 参数`timeout`/`api_timeout`
+#### 3.2.3 参数`timeout`/`api_timeout`
 
 为了保护系统，所有在DataFlux Func 中运行的函数都有运行时长限制，不允许无限制地运行下去。
 其中，`timeout`控制「函数本身的运行时长」，而`api_timeout`控制在「授权链接中，API返回的超时时长」。
@@ -153,7 +343,7 @@ GET /api/v1/func-list?tags=tag1,tag2
 
 *注意：大量长耗时授权链接请求会导致任务队列堵塞，必要时应使用缓存技术*
 
-#### 2.1.4 参数`cache_result`
+#### 3.2.4 参数`cache_result`
 
 DataFlux Func 内置了API层面的缓存处理。
 在指定的缓存参数后，当调用完全相同的函数和参数时，系统会直接返回缓存的结果。
@@ -173,7 +363,7 @@ DataFlux Func 内置了API层面的缓存处理。
 X-Dataflux-Func-Cache: Cached
 ```
 
-#### 2.1.5 参数`fixed_crontab`
+#### 3.2.5 参数`fixed_crontab`
 
 对于某些会用于自动触发配置的函数，函数编写者可能会对自动运行的频率有要求。
 此时，可以指定本参数，将属于本函数的自动触发配置固定为指定的Crontab 表达式。
@@ -185,7 +375,7 @@ X-Dataflux-Func-Cache: Cached
     pass
 ```
 
-### 2.2 操作数据源 `DFF.SRC(...)`
+### 3.3 操作数据源 `DFF.SRC(...)`
 
 一个函数，用于返回指定的数据源操作对象。
 
@@ -214,7 +404,7 @@ dataway = DFF.SRC('df_dataway', token='xxxxx', rp='rp0')
 |------------------|------|----------|--------|----------|
 | `data_source_id` | str  | 必须     |        | 数据源ID |
 
-#### 2.2.1 InfluxDB
+#### 3.3.1 InfluxDB
 
 InfluxDB数据源操作对象为Python第三方包influxdb（版本5.2.3）的封装，主要提供一些用于查询InfluxDB的方法。
 本数据源兼容以下数据库：
@@ -272,7 +462,7 @@ sql_params = ['demo', 'hangzhou']
 db_res = db.query2(sql, sql_params=sql_params, dict_output=True)
 ```
 
-#### 2.2.2 MySQL
+#### 3.3.2 MySQL
 
 MySQL数据源操作对象主要提供一些操作MySQL的方法。
 本数据源以下数据库：
@@ -300,7 +490,7 @@ sql_params = ['demo', 1]
 db_res = db.query(sql, sql_params=sql_params)
 ```
 
-#### 2.2.3 Redis
+#### 3.3.3 Redis
 
 Redis数据源操作对象主要提供Redis的操作方法。
 
@@ -333,7 +523,7 @@ db_res = db.query('GET', 'jsonValue')
 print(json.loads(db_res))
 ```
 
-#### 2.2.4 Memcached
+#### 3.3.4 Memcached
 
 Memcached数据源操作对象主要提供Memcached的操作方法。
 
@@ -353,7 +543,7 @@ db_res = db.query('GET', 'myKey')
 # 'myValue'
 ```
 
-#### 2.2.5 ClickHouse
+#### 3.3.5 ClickHouse
 
 ClickHouse数据源操作对象主要提供一些数据方法。
 
@@ -374,7 +564,7 @@ sql_params = ['demo_table', 50]
 db_res = helper.query(sql, sql_params=sql_params)
 ```
 
-#### 2.2.6 Oracle Database
+#### 3.3.6 Oracle Database
 
 Oracle Database数据源操作对象主要提供Oracle Database的操作方法。
 
@@ -395,7 +585,7 @@ sql_params = ['demo', 1]
 db_res = db.query(sql, sql_params=sql_params)
 ```
 
-#### 2.2.7 Microsoft SQL Server
+#### 3.3.7 Microsoft SQL Server
 
 Microsoft SQL Server数据源操作对象主要提供Microsoft SQL Server的操作方法。
 
@@ -416,7 +606,7 @@ sql_params = ['demo', 1]
 db_res = db.query(sql, sql_params=sql_params)
 ```
 
-#### 2.2.8 PostgreSQL
+#### 3.3.8 PostgreSQL
 
 PostgreSQL数据源操作对象主要提供一些操作PostgreSQL的方法。
 本数据源以下数据库：
@@ -442,7 +632,7 @@ sql_params = ['demo', 1]
 db_res = db.query(sql, sql_params=sql_params)
 ```
 
-#### 2.2.9 mongoDB
+#### 3.3.9 mongoDB
 
 mongoDB数据源操作对象主要提供一些操作mongoDB的方法。
 
@@ -488,7 +678,7 @@ collection_list = helper.run_method('list_collection_names', db_name='some_db')
 
 具体查询语法、格式等，请参考mongoDB官方文档
 
-#### 2.2.10 elasticsearch
+#### 3.3.10 elasticsearch
 
 elasticsearch数据源操作对象主要提供一些操作elasticsearch的方法。
 
@@ -513,7 +703,7 @@ db_res = db.query('GET', '/some_index/_search', body={...})
 
 具体查询语法、格式等，请参考elasticsearch官方文档
 
-#### 2.2.11 DataFlux DataWay
+#### 3.3.11 DataFlux DataWay
 
 DataFlux DataWay数据源操作对象主要提供数据写入方法。
 
@@ -595,7 +785,7 @@ dw.write_points(points)
 > 本方法为通用处理方法，具体参数格式、内容等请参考DataWay官方文档
 
 
-### 2.3 获取环境变量 `DFF.ENV(...)`
+### 3.4 获取环境变量 `DFF.ENV(...)`
 
 在脚本编辑器左侧边栏配置的所有环境变量，
 都可以在脚本中使用配置的ID获取对应的环境变量值。
@@ -624,18 +814,132 @@ except Exception as e:
     pass
 ```
 
-### 2.4 输出日志 `print(...)`
+### 3.5 接口响应控制
 
-由于脚本编辑器是Web应用程序，
-不同于一般意义上的IDE，不支持进行单步调试等操作。
-因此，调试可以依靠运行时输出日志进行。
+函数的返回值，除了以往直接返回字符串、JSON外，
+还可以使用`DFF.RESP(...)`/`DFF.RESP_FILE(...)`用于控制接口返回内容。
 
-为了让日志输出能够被DataFlux Func搜集并显示到脚本编辑器中，
-DataFlux Func重新封装了`print(...)`函数，
-使其可以将输出内容通过Web页面展现出来。如：
+#### 3.5.1 `DFF.RESP(...)`
+
+当返回的内容为字符串、JSON等「数据」时，可使用`DFF.RESP(...)`进行细节控制。
+
+|      参数      |      类型     | 是否必须 | 默认值  |                                        说明                                        |
+|----------------|---------------|----------|---------|------------------------------------------------------------------------------------|
+| `data`         | str/dict/list | 必须     |         | 指定返回的数据                                                                     |
+| `status_code`  | int           |          | `200`   | 指定响应状态码                                                                     |
+| `content_type` | str           |          | `None`  | 指定响应体类型，如`text/html`或只填写`html`                                        |
+| `headers`      | dict          |          | `None`  | 指定HTTP响应头（此处不需要重复填写`Content-Type`）                                 |
+| `allow_304`    | bool          |          | `False` | 指定为`True`时，允许浏览器304缓存                                                  |
+| `download`     | str           |          | `False` | 指定下载文件名，并将数据作为文件下载<br>*指定本参数后，`content_type`参数不再起效* |
+
+*注意：如果开启`allow_304`，允许浏览器304缓存，可以实现接口性能提升。但也可能会因为缓存导致客户端无法及时从接口获取最新内容*
+
+*注意：指定`download`参数后，系统会自动根据文件扩展名填充`Content-Type`，而`content_type`参数会被忽略*
+
+常见用例如下：
 
 ```python
-print('Some log message')
+@DFF.API('用例1')
+def case_1():
+    '''
+    返回一个由函数内生成的HTML页面
+    '''
+    data = '''<h1>Hello, World!</h1>'''
+    return DFF.RESP(data, content_type='html')
+
+@DFF.API('用例2')
+def case_2():
+    '''
+    返回由函数生成的JSON数据
+    与 return {"hello": "world"} 等价
+    '''
+    data = '''{"hello": "world"}'''
+    return DFF.RESP(data, content_type='json')
+
+@DFF.API('用例3')
+def case_3():
+    '''
+    返回由函数生成的JSON数据
+    与 return {"hello": "world"} 等价
+    '''
+    data = '''{"hello": "world"}'''
+    return DFF.RESP(data, content_type='json')
+
+@DFF.API('用例4')
+def case_4():
+    '''
+    下载由函数生成的文件，并命名为`文章.txt`
+    '''
+    data = '''Some text'''
+    return DFF.RESP(data, download='文章.txt')
+
+@DFF.API('用例5')
+def case_5():
+    '''
+    指定额外的响应头
+    '''
+    data = '''<h1>Hello, World!</h1>'''
+    headers = {
+        'X-Author': 'Tom',
+    }
+    return DFF.RESP(data, content_type='html', headers=headers)
+```
+
+#### 3.5.2 `DFF.RESP_FILE(...)`
+
+当返回的内容为「磁盘上的文件」时，可使用`DFF.RESP_FILE(...)`进行细节控制。
+
+|      参数     |   类型   | 是否必须 | 默认值  |                                                               说明                                                              |
+|---------------|----------|----------|---------|---------------------------------------------------------------------------------------------------------------------------------|
+| `file_path`   | str      | 必须     |         | 指定返回文件的路径（相对于资源文件目录）                                                                                        |
+| `status_code` | int      |          | `200`   | *与`DFF.RESP(...)`同名参数相同*                                                                                                 |
+| `headers`     | dict     |          | `None`  | *与`DFF.RESP(...)`同名参数相同*                                                                                                 |
+| `allow_304`   | bool     |          | `False` | *与`DFF.RESP(...)`同名参数相同*                                                                                                 |
+| `auto_delete` | bool     |          | `False` | 指定为`True`时，文件下载后自动从磁盘中删除                                                                                      |
+| `download`    | bool/str |          | `True`  | 默认下载文件且保存名与原始文件名相同<br>指定为`False`时，让浏览器尽可能直接打开文件<br>指定为字符串时，按指定的值作为下载文件名 |
+
+*提示：`DFF.RESP_FILE(...)`会自动根据文件扩展名填充HTTP的`Content-Type`头，默认以`file_path`为准，指定`download`字符串时则以`download`值作为文件名下载*
+
+*提示：「资源文件目录」指的是容器内的`/data/resources`文件夹，正常部署后此文件夹会挂载到宿主机磁盘实现持久化存储*
+
+```python
+@DFF.API('用例1')
+def case_1():
+    '''
+    下载资源文件目录下user-guide.pdf文件
+    '''
+    return DFF.RESP_FILE('user-guide.pdf')
+
+@DFF.API('用例2')
+def case_2():
+    '''
+    让浏览器在线打开资源目录下的`user-guide.pdf`文件
+    '''
+    return DFF.RESP_FILE('user-guide.pdf', download=False)
+
+@DFF.API('用例3')
+def case_3():
+    '''
+    浏览器打开资源目录下index.html页面
+    '''
+    return DFF.RESP_FILE('index.html', download=False)
+
+@DFF.API('用例4')
+def case_4():
+    '''
+    下载资源文件目录下的servey.xlsx文件，并保存为「调查表.xlsx」
+    '''
+    return DFF.RESP_FILE('servey.xlsx', download='调查表.xlsx')
+
+@DFF.API('用例5')
+def case_5():
+    '''
+    指定额外的响应头
+    '''
+    headers = {
+        'X-Author': 'Tom',
+    }
+    return DFF.RESP_FILE('user-guide.pdf', headers=headers)
 ```
 
 
