@@ -68,17 +68,18 @@ export default {
       window.scrollTo(0, 0);
     });
 
-    $(document).on('click', '#index li', function(event) {
+    $(document).on('click', '#index a', function(event) {
+      event.preventDefault();
       event.stopPropagation();
 
-      let destText = event.target.innerText.split('\n')[0].trim();
-      console.log('destText', destText)
+      let destSeq = event.target.innerText.trim().split(' ')[0];
+      console.log('destText', destSeq)
 
       let destElem = null;
       $('h1,h2,h3,h4,h5,h6').each(function(index, headerElem) {
-        let headerText = headerElem.innerText.trim();
-        console.log('headerText', headerText)
-        if (headerText === destText) {
+        let headerSeq = headerElem.innerText.trim().split(' ')[0];
+        console.log('headerSeq', headerSeq)
+        if (headerSeq === destSeq) {
           destElem = headerElem;
         };
       });

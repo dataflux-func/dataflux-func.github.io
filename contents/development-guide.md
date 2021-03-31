@@ -5,6 +5,8 @@
 在阅读本文档前，请确保已经阅读过「DataFlux Func 用户手册」，
 且已经对DataFlux Func 以及在DataFlux Func 中编写脚本有了初步的了解。
 
+
+
 ## 目录
 
 <!-- MarkdownTOC levels="1,2,3,4" -->
@@ -48,6 +50,7 @@
 <!-- /MarkdownTOC -->
 
 
+
 ## 1. 第一步
 
 在DataFlux Func 中编写代码，与正常编写Python 代码并无太大区别。
@@ -65,6 +68,8 @@ def hello_world(message=None):
     }
     return ret
 ```
+
+
 
 ## 2. 使用内置功能
 
@@ -632,6 +637,8 @@ DataFlux Func重新封装了`print(...)`函数，
 ```python
 print('Some log message')
 ```
+
+
 
 ## 3. 脚本集、脚本规划设计
 
