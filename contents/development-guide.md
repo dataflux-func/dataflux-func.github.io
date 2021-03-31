@@ -11,13 +11,13 @@
 
 - [1. 第一步](#1-%E7%AC%AC%E4%B8%80%E6%AD%A5)
 - [2. 使用内置功能](#2-%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E5%8A%9F%E8%83%BD)
-    - [2.1 导出函数 DFF.API](#21-%E5%AF%BC%E5%87%BA%E5%87%BD%E6%95%B0-dffapi)
-        - [2.1.1 参数 title](#211-%E5%8F%82%E6%95%B0-title)
-        - [2.1.2 参数 category、tags](#212-%E5%8F%82%E6%95%B0-category%E3%80%81tags)
-        - [2.1.3 参数 timeout、api_timeout](#213-%E5%8F%82%E6%95%B0-timeout%E3%80%81api_timeout)
-        - [2.1.4 参数 cache_result](#214-%E5%8F%82%E6%95%B0-cache_result)
-        - [2.1.5 参数 fixed_crontab](#215-%E5%8F%82%E6%95%B0-fixed_crontab)
-    - [2.2 操作数据源 DFF.SRC](#22-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E6%BA%90-dffsrc)
+    - [2.1 导出函数 `DFF.API(...)`](#21-%E5%AF%BC%E5%87%BA%E5%87%BD%E6%95%B0-dffapi)
+        - [2.1.1 参数`title`](#211-%E5%8F%82%E6%95%B0title)
+        - [2.1.2 参数`category`/`tags`](#212-%E5%8F%82%E6%95%B0categorytags)
+        - [2.1.3 参数`timeout`/`api_timeout`](#213-%E5%8F%82%E6%95%B0timeoutapi_timeout)
+        - [2.1.4 参数`cache_result`](#214-%E5%8F%82%E6%95%B0cache_result)
+        - [2.1.5 参数`fixed_crontab`](#215-%E5%8F%82%E6%95%B0fixed_crontab)
+    - [2.2 操作数据源 `DFF.SRC(...)`](#22-%E6%93%8D%E4%BD%9C%E6%95%B0%E6%8D%AE%E6%BA%90-dffsrc)
         - [2.2.1 InfluxDB](#221-influxdb)
         - [2.2.2 MySQL](#222-mysql)
         - [2.2.3 Redis](#223-redis)
@@ -29,8 +29,8 @@
         - [2.2.9 mongoDB](#229-mongodb)
         - [2.2.10 elasticsearch](#2210-elasticsearch)
         - [2.2.11 DataFlux DataWay](#2211-dataflux-dataway)
-    - [2.3 获取环境变量 DFF.ENV](#23-%E8%8E%B7%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-dffenv)
-    - [2.4 输出日志 print](#24-%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97-print)
+    - [2.3 获取环境变量 `DFF.ENV(...)`](#23-%E8%8E%B7%E5%8F%96%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F-dffenv)
+    - [2.4 输出日志 `print(...)`](#24-%E8%BE%93%E5%87%BA%E6%97%A5%E5%BF%97-print)
 - [3. 脚本集、脚本规划设计](#3-%E8%84%9A%E6%9C%AC%E9%9B%86%E3%80%81%E8%84%9A%E6%9C%AC%E8%A7%84%E5%88%92%E8%AE%BE%E8%AE%A1)
     - [3.1 按照用途、类型合理划分脚本集和脚本](#31-%E6%8C%89%E7%85%A7%E7%94%A8%E9%80%94%E3%80%81%E7%B1%BB%E5%9E%8B%E5%90%88%E7%90%86%E5%88%92%E5%88%86%E8%84%9A%E6%9C%AC%E9%9B%86%E5%92%8C%E8%84%9A%E6%9C%AC)
     - [3.2 调用另一个脚本中的函数](#32-%E8%B0%83%E7%94%A8%E5%8F%A6%E4%B8%80%E4%B8%AA%E8%84%9A%E6%9C%AC%E4%B8%AD%E7%9A%84%E5%87%BD%E6%95%B0)
@@ -73,7 +73,7 @@ DataFlux Func在脚本运行上下文注入了一些额外功能。
 
 这些功能都封装在DFF对象中（如上文出现的`@DFF.API(...)`）
 
-### 2.1 导出函数 DFF.API
+### 2.1 导出函数 `DFF.API(...)`
 
 一个装饰器，用于将被修饰的函数对外开放，允许使用API方式调用。
 
@@ -90,7 +90,7 @@ DataFlux Func在脚本运行上下文注入了一些额外功能。
 | `cache_result`  | int                 |          | `None`      | 缓存结果数据时长。<br>单位：秒，`None`表示不缓存                    |
 | `fixed_crontab` | str(Crontab-format) |          | `None`      | 当函数由自动触发执行时，强制固定的Crontab配置。<br>最小支持分钟级   |
 
-#### 2.1.1 参数 title
+#### 2.1.1 参数`title`
 
 函数标题支持中文，方便在DataFlux Func 各种操作界面/文档中展示函数名称。
 
@@ -102,7 +102,7 @@ def my_func():
     pass
 ```
 
-#### 2.1.2 参数 category、tags
+#### 2.1.2 参数`category`/`tags`
 
 函数所属分类、标签列表，本身并不参与也不控制函数的运行，主要用于方便分类管理函数。
 分别使用或者各自单独使用都可以。
@@ -124,7 +124,7 @@ GET /api/v1/func-list?category=demo
 GET /api/v1/func-list?tags=tag1,tag2
 ```
 
-#### 2.1.3 参数 timeout、api_timeout
+#### 2.1.3 参数`timeout`/`api_timeout`
 
 为了保护系统，所有在DataFlux Func 中运行的函数都有运行时长限制，不允许无限制地运行下去。
 其中，`timeout`控制「函数本身的运行时长」，而`api_timeout`控制在「授权链接中，API返回的超时时长」。
@@ -148,7 +148,7 @@ GET /api/v1/func-list?tags=tag1,tag2
 
 *注意：大量长耗时授权链接请求会导致任务队列堵塞，必要时应使用缓存技术*
 
-#### 2.1.4 参数 cache_result
+#### 2.1.4 参数`cache_result`
 
 DataFlux Func 内置了API层面的缓存处理。
 在指定的缓存参数后，当调用完全相同的函数和参数时，系统会直接返回缓存的结果。
@@ -168,7 +168,7 @@ DataFlux Func 内置了API层面的缓存处理。
 X-Dataflux-Func-Cache: Cached
 ```
 
-#### 2.1.5 参数 fixed_crontab
+#### 2.1.5 参数`fixed_crontab`
 
 对于某些会用于自动触发配置的函数，函数编写者可能会对自动运行的频率有要求。
 此时，可以指定本参数，将属于本函数的自动触发配置固定为指定的Crontab 表达式。
@@ -180,7 +180,7 @@ X-Dataflux-Func-Cache: Cached
     pass
 ```
 
-### 2.2 操作数据源 DFF.SRC
+### 2.2 操作数据源 `DFF.SRC(...)`
 
 一个函数，用于返回指定的数据源操作对象。
 
@@ -590,7 +590,7 @@ dw.write_points(points)
 > 本方法为通用处理方法，具体参数格式、内容等请参考DataWay官方文档
 
 
-### 2.3 获取环境变量 DFF.ENV
+### 2.3 获取环境变量 `DFF.ENV(...)`
 
 在脚本编辑器左侧边栏配置的所有环境变量，
 都可以在脚本中使用配置的ID获取对应的环境变量值。
@@ -619,7 +619,7 @@ except Exception as e:
     pass
 ```
 
-### 2.4 输出日志 print
+### 2.4 输出日志 `print(...)`
 
 由于脚本编辑器是Web应用程序，
 不同于一般意义上的IDE，不支持进行单步调试等操作。
